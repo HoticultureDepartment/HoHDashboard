@@ -1,0 +1,6 @@
+@HoHDashboard.server_HostAddress = http://localhost:5234
+
+GET {{HoHDashboard.server_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
