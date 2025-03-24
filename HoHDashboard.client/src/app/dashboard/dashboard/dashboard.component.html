@@ -1,138 +1,106 @@
-<div class="container-fluid overflow-hidden">
-    <div class="row vh-100 overflow-auto">
-        <div class="col-12 col-sm-3 col-xl-2 px-sm-2 px-0 d-flex sticky-top" style="background-color: #45595b">
-            <div
-                class="d-flex flex-sm-column flex-row flex-grow-1 align-items-center align-items-sm-start px-2 pt-2 txtsuccess">
-                <div class="py-md-2 py-sm-4 ms-auto ms-sm-0 flex-shrink-1 mb-md-3">
-                    <a href="/" class="d-flex align-items-center text-white text-decoration-none">
-                        <img src="https://img.freepik.com/premium-vector/brunette-man-avatar-portrait-young-guy-vector-illustration-face_217290-1549.jpg"
-                            alt="hugenerd" width="28" height="28" class="rounded-circle" />
-                        <span class="d-none d-sm-inline mx-1">
-                            <label class="fw-medium mx-2 f">Name</label>
-                        </span>
-                    </a>
-                </div>
-                <hr class="d-none d-md-block text-light border-1 w-100 mt-0" />
-
-                <ul class="nav nav-pills flex-sm-column flex-row flex-nowrap flex-shrink-1 flex-sm-grow-0 flex-grow-1 mb-sm-auto mb-0 justify-content-center align-items-center align-items-sm-start w-100"
-                    id="menu">
-
-                    <li class="my-1">
-                        <a href="index.aspx" class="nav-link px-sm-0 px-2 text-light activeLink">
-                            <i class="fa-solid fa-chart-line mx-2"></i><span
-                                class="ms-1 d-none d-sm-inline mx-1">Dashboard</span> </a>
-                    </li>
-
-                    <li class="dropdown my-1">
-                        <a href="#" class="nav-link dropdown-toggle px-sm-0 px-1 text-light" id="dropdown"
-                            data-bs-toggle="dropdown" aria-expanded="false">
-                            <i class="f fa-solid fa-file mx-2"></i><span class="ms-1 d-none d-sm-inline mx-1">My
-                                Order</span>
-                        </a>
-                        <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdown">
-                            <li class="my-2"><a class="dropdown-item" href="fruit_orders.aspx">Fruit Order</a>
-                            </li>
-                            <li><a class="dropdown-item" href="potato_orders.aspx">Potato Order</a></li>
-
-                        </ul>
-                    </li>
-                    <li class="dropdown my-1">
-                        <a href="#" class="nav-link dropdown-toggle px-sm-0 px-1 text-light" id="dropdown1"
-                            data-bs-toggle="dropdown" aria-expanded="false">
-                            <i class="fa-solid fa-seedling f mx-2"></i><span
-                                class="ms-1 d-none d-sm-inline mx-1">Seedling Booking</span>
-                        </a>
-                        <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdown1">
-                            <li><a class="dropdown-item" href="Own_Seed_Booking.aspx">Vegetables Seedling</a></li>
-                        </ul>
-                    </li>
-                    <li class="dropdown my-1">
-                        <a href="#" class="nav-link dropdown-toggle px-sm-0 px-1 text-light" id="dropdown2"
-                            data-bs-toggle="dropdown" aria-expanded="false">
-                            <i class="fa-solid fa-chart-simple f mx-2"></i><span
-                                class="ms-1 d-none d-sm-inline mx-1">Reports</span>
-                        </a>
-                        <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdown2">
-                            <li><a class="dropdown-item" href="fruit_orders.aspx">Fruit Orders</a></li>
-                            <li><a class="dropdown-item" href="potato_orders.aspx">Potato Orders</a></li>
-                            <li>
-                                <hr class="dropdown-divider" />
-                            </li>
-                            <li><a class="dropdown-item" href="Advanced_Booking_Status.aspx">Vegetable Seedling Orders
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-
-                    <li class="my-1">
-                        <a href="changepassword.aspx" class="nav-link px-sm-0 px-2 text-light">
-                            <i class="fa-solid fa-lock f mx-2"></i><span class="ms-1 d-none d-sm-inline mx-1">Change
-                                Password</span></a>
-                    </li>
-                </ul>
-
-            </div>
-        </div>
-        <div class="col-12 col-sm-9 col-xl-10 d-flex flex-column h-sm-100 bgColor">
-            <main class="row overflow-auto">
-                <div class="col-lg-12 col-md-12 col-sm-12 col-12 pt-0">
-                    <nav class="navbar bgColor border-bottom">
-                        <div class="container-fluid py-1">
-                            <a class="navbar-brand p-0 d-none d-md-block" href="#">
-                                <img src="/assets/logo.png" alt="Logo" width="46" height="46"
-                                    class="d-inline-block align-text-top" />
-                            </a>
-                            <div class="d-flex">
-                                <a href="../Default.aspx" class="btn successColor fw-medium shadow-sm"><i
-                                        class="fa-solid fa-house mx-1"></i>Home </a>
-                                <a href="index.aspx" class="btn btn-warning mx-1 shadow-sm"><i
-                                        class="fa-solid fa-chart-line mx-2"></i>Dashboard </a>
-                                <button ID="lnkSignout" runat="server" OnClick="lnkSignout_Click"
-                                    CssClass="btn btn-danger shadow-sm">Logout <i
-                                        class="fa-solid fa-right-from-bracket mx-1"></i></button>
+<section class="py-3">
+    <div class="col-lg-12 col-md-12 col-sm-12">
+        <div class="row">
+            <div class="col-lg-3 col-md-6 col-sm-12 col-12">
+                <a href="#" class="text-decoration-none">
+                    <div class="card border-0 mb-2 shadow-sm bg-danger-subtle">
+                        <div class="card-body py-2">
+                            <div class="row justify-content-center align-items-center">
+                                <div class="col-5 col-md-6">
+                                    <div class="fs-2">
+                                        <!-- <i
+                                                                    class="fa-solid fa-cart-plus iconSize mx-3 fs-3 text-primary"></i> -->
+                                        BBY
+                                    </div>
+                                </div>
+                                <div class="col-7 col-md-6">
+                                    <div class="text-end lh-1">
+                                        <p class="fw-medium text-muted">Total Orders </p>
+                                        <p class="fs-4">
+                                            <label>2000</label>
+                                        </p>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                    </nav>
-
-                    <div>
-                        <div class="mat-elevation-z8">
-                            <table mat-table [dataSource]="dataSource">
-
-                                <!-- Position Column -->
-                                <ng-container matColumnDef="id">
-                                    <th mat-header-cell *matHeaderCellDef> ID </th>
-                                    <td mat-cell *matCellDef="let element"> {{element.id}} </td>
-                                </ng-container>
-
-                                <!-- Name Column -->
-                                <ng-container matColumnDef="userName">
-                                    <th mat-header-cell *matHeaderCellDef> Name </th>
-                                    <td mat-cell *matCellDef="let element"> {{element.userName}} </td>
-                                </ng-container>
-
-                                <!-- Weight Column -->
-                                <ng-container matColumnDef="createdDateTime">
-                                    <th mat-header-cell *matHeaderCellDef> Created Date </th>
-                                    <td mat-cell *matCellDef="let element"> {{element.createdDateTime}} </td>
-                                </ng-container>
-
-                                <!-- Symbol Column -->
-                                <ng-container matColumnDef="updatedDateTime">
-                                    <th mat-header-cell *matHeaderCellDef> Updated Date </th>
-                                    <td mat-cell *matCellDef="let element"> {{element.updatedDateTime}} </td>
-                                </ng-container>
-
-                                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-                                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-                            </table>
-
-                            <mat-paginator [pageSizeOptions]="[2, 10, 20]" showFirstLastButtons
-                                aria-label="Select page of periodic elements">
-                            </mat-paginator>
+                    </div>
+                </a>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-12 col-12">
+                <a href="#" class="text-decoration-none">
+                    <div class="card border-0 mb-2 shadow-sm bg-primary-subtle">
+                        <div class="card-body py-2">
+                            <div class="row justify-content-center align-items-center">
+                                <div class="col-6 col-md-6">
+                                    <div class="fs-2">
+                                        MBBY
+                                    </div>
+                                </div>
+                                <div class="col-5 col-md-6">
+                                    <div class="text-end lh-1">
+                                        <p class="fw-medium text-muted">Total Orders </p>
+                                        <p class="fs-4">
+                                            <label>600</label>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </main>
+                </a>
+            </div>
         </div>
     </div>
-</div>
+    <div>
+        <div class="row py-3 g-2">
+            <div class="col-md-12 col-sm-12">
+                <highcharts-chart [Highcharts]="Highcharts" [options]="chartOptions"
+                    class="w-100 h-100 d-block shadow-sm rounded">
+                </highcharts-chart>
+            </div>
+        </div>
+    </div>
+    <div>
+        <mat-form-field>
+            <mat-label>Filter</mat-label>
+            <input matInput (keyup)="applyFilter($event)" placeholder="Ex. BBY/2024" #input>
+        </mat-form-field>
+        <div class="mat-elevation-z8">
+            <table mat-table [dataSource]="dataSource" matSort>
+                <!-- Position Column -->
+                <ng-container matColumnDef="id">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>
+                    <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+                </ng-container>
+                <!-- Name Column -->
+                <ng-container matColumnDef="userName">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
+                    <td mat-cell *matCellDef="let element"> {{element.userName}} </td>
+                </ng-container>
+                <!-- Weight Column -->
+                <ng-container matColumnDef="createdDateTime">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Created Date
+                    </th>
+                    <td mat-cell *matCellDef="let element"> {{element.createdDateTime}}
+                    </td>
+                </ng-container>
+                <!-- Symbol Column -->
+                <ng-container matColumnDef="updatedDateTime">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Updated Date
+                    </th>
+                    <td mat-cell *matCellDef="let element"> {{element.updatedDateTime}}
+                    </td>
+                </ng-container>
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                <tr class="mat-row" *matNoDataRow>
+                    <td class="mat-cell" colspan="4">No data matching the filter
+                        "{{input.value}}"</td>
+                </tr>
+            </table>
+            <mat-paginator [pageSizeOptions]="[2, 10, 20]" showFirstLastButtons
+                aria-label="Select page of periodic elements">
+            </mat-paginator>
+        </div>
+    </div>
+</section>

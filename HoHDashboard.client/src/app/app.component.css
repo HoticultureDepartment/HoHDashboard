@@ -1,0 +1,33 @@
+@media (min-width: 576px) {
+    .h-sm-100 {
+        height: 100%;
+    }
+}
+
+@media(min-width:576px) {
+    .vheight {
+        min-height: 100vh !important;
+    }
+}
+
+.txtsuccess {
+    color: #81c408 !important;
+}
+
+.successColor {
+    background-color: #81c408 !important;
+}
+
+.successColor:hover {
+    background-color: #8cd209 !important;
+}
+
+.nav li .activeLink {
+    color: #81c408 !important;
+    /*background-color: #64787aff !important;*/
+}
+
+.nav li a:hover {
+    color: #81c408 !important;
+    /*background-color: #64787aff !important;*/
+}
