@@ -1,5 +1,7 @@
 ﻿using HoHDashboard.server.Models;
 using HoHDashboard.server.Repository.IRepository;
+using HoHDashboard.server.ViewModels;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Any;
 
 namespace HoHDashboard.server.Repository
@@ -16,6 +18,11 @@ namespace HoHDashboard.server.Repository
         {
             var list = _context.BeneficiaryMasters.OrderBy(x => x.BeneficiaryName).Where(x => x.IsDeleted == false).ToList();
             return list;
+        }
+        public IEnumerable<FyYearSubsidyAmountViewModel> GetFyYearSubsidyAmount()
+        {
+            var res = _context.Database.SqlQueryRaw<FyYearSubsidyAmountViewModel>("Exec Usp_GetFyYearSubsidyData").ToList();
+            return res;
         }
     }
 }

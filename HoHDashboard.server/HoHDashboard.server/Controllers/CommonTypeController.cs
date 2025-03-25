@@ -24,5 +24,11 @@ namespace HoHDashboard.server.Controllers
             var data = _common.GetBeneficiaryList();
             return Ok(data);
         }
+        [HttpGet("fySubsidyAmount")]
+        public IActionResult SubsidyAmount()
+        {
+            var data = _common.GetFyYearSubsidyAmount();
+            return Ok(data);
+        }
     }
 }

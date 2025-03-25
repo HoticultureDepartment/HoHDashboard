@@ -1,4 +1,5 @@
 ﻿using HoHDashboard.server.Models;
+using HoHDashboard.server.ViewModels;
 using Microsoft.OpenApi.Any;
 
 namespace HoHDashboard.server.Repository.IRepository
@@ -7,5 +8,6 @@ namespace HoHDashboard.server.Repository.IRepository
     {
         IEnumerable<UserLogin> GetUserList();
         IEnumerable<BeneficiaryMaster> GetBeneficiaryList();
+        IEnumerable<FyYearSubsidyAmountViewModel> GetFyYearSubsidyAmount();
     }
 }
