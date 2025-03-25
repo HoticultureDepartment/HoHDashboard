@@ -1,6 +1,6 @@
 ﻿{
    "CodeGenerationMode": 4,
-   "ContextClassName": "ApplicationDbContext.Context",
+   "ContextClassName": "ApplicationDb.Context",
    "ContextNamespace": null,
    "FilterSchemas": false,
    "IncludeConnectionString": false,
@@ -14,6 +14,10 @@
    "SelectedToBeGenerated": 0,
    "T4TemplatePath": null,
    "Tables": [
+      {
+         "Name": "[dbo].[BeneficiaryMaster]",
+         "ObjectType": 0
+      },
       {
          "Name": "[dbo].[UserLogin]",
          "ObjectType": 0

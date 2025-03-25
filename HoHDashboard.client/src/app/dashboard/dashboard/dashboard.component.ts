@@ -7,25 +7,27 @@ import { FetchAPIsService } from '../../fetch-apis.service';
 import { MatInputModule } from '@angular/material/input';
 import { MatSort, MatSortModule } from '@angular/material/sort';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatButtonModule } from '@angular/material/button';
 import { HighchartsChartModule } from 'highcharts-angular';
 import * as Highcharts from 'highcharts';
 
 @Component({
   selector: 'app-dashboard',
-  imports: [CommonModule, RouterModule, MatFormFieldModule, MatInputModule, MatPaginator, MatPaginatorModule, MatTableModule, HighchartsChartModule, MatSortModule, MatPaginatorModule],
+  imports: [CommonModule, RouterModule, MatFormFieldModule, MatInputModule, MatPaginator, MatPaginatorModule, MatTableModule, HighchartsChartModule, MatSortModule, MatPaginatorModule, MatButtonModule],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.css'
 })
 export class DashboardComponent implements AfterViewInit {
   usersList: any = [];
+  beneficiaryList: any = [];
   Highcharts: typeof Highcharts = Highcharts;
   chartOptions: Highcharts.Options;
 
 
 
 
-  displayedColumns: string[] = ['id', 'userName', 'createdDateTime', 'updatedDateTime'];
-  dataSource = new MatTableDataSource<any>(this.usersList);
+  displayedColumns: string[] = ['uidByDepartment', 'fyYear', 'schemeName', 'componantName', 'beneficiaryName', 'fatherName', 'villageName', 'blockName', 'districtName', 'mobileNo', 'familyID', 'claimID', 'category', 'gender', 'areaNosPerUnit', 'subsidyAmountToFarmer', 'cropName', 'transactionType'];
+  dataSource = new MatTableDataSource<any>(this.beneficiaryList);
 
   @ViewChild(MatPaginator)
   paginator: MatPaginator | null = new MatPaginator;
@@ -34,6 +36,9 @@ export class DashboardComponent implements AfterViewInit {
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
+  }
+  getTableColumns(): string[] {
+    return ['actions', ...this.displayedColumns];
   }
 
   constructor(private fetchApi: FetchAPIsService, private router: Router) {
@@ -68,6 +73,16 @@ export class DashboardComponent implements AfterViewInit {
     };
 
   }
+  onButtonClick(element: any) {
+    console.table(element);
+  }
+
+  public Beneficiaries() {
+    this.fetchApi.Beneficiaries().subscribe((res: any) => {
+      this.beneficiaryList = res;
+      this.dataSource.data = res;
+    }, (err: any) => { console.log(err) })
+  }
 
   public UserList() {
     this.fetchApi.Users().subscribe((res: any) => {
@@ -87,9 +102,9 @@ export class DashboardComponent implements AfterViewInit {
   }
 
 
-
   ngOnInit() {
-    this.UserList();
+    // this.UserList();
+    this.Beneficiaries();
   }
 }
 

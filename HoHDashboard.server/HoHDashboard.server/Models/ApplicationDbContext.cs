@@ -13,10 +13,80 @@ public partial class ApplicationDbContext : DbContext
     {
     }
 
+    public virtual DbSet<BeneficiaryMaster> BeneficiaryMasters { get; set; }
+
     public virtual DbSet<UserLogin> UserLogins { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        modelBuilder.Entity<BeneficiaryMaster>(entity =>
+        {
+            entity
+                .HasNoKey()
+                .ToTable("BeneficiaryMaster");
+
+            entity.Property(e => e.AccountNumber)
+                .HasMaxLength(50)
+                .IsUnicode(false);
+            entity.Property(e => e.AreaNosPerUnit).HasColumnType("numeric(18, 4)");
+            entity.Property(e => e.BeneficiaryName)
+                .HasMaxLength(50)
+                .IsUnicode(false);
+            entity.Property(e => e.BlockName)
+                .HasMaxLength(50)
+                .IsUnicode(false);
+            entity.Property(e => e.Category)
+                .HasMaxLength(15)
+                .IsUnicode(false);
+            entity.Property(e => e.ClaimID)
+                .HasMaxLength(50)
+                .IsUnicode(false);
+            entity.Property(e => e.ComponantName)
+                .HasMaxLength(50)
+                .IsUnicode(false);
+            entity.Property(e => e.CreatedBy)
+                .HasMaxLength(50)
+                .IsUnicode(false);
+            entity.Property(e => e.CropName).HasMaxLength(50);
+            entity.Property(e => e.DistrictName)
+                .HasMaxLength(50)
+                .IsUnicode(false);
+            entity.Property(e => e.FamilyID)
+                .HasMaxLength(20)
+                .IsUnicode(false);
+            entity.Property(e => e.FatherName)
+                .HasMaxLength(50)
+                .IsUnicode(false);
+            entity.Property(e => e.FyYear)
+                .HasMaxLength(10)
+                .IsUnicode(false);
+            entity.Property(e => e.Gender)
+                .HasMaxLength(6)
+                .IsUnicode(false);
+            entity.Property(e => e.IFSC_Code)
+                .HasMaxLength(50)
+                .IsUnicode(false);
+            entity.Property(e => e.MobileNo)
+                .HasMaxLength(15)
+                .IsUnicode(false);
+            entity.Property(e => e.PANCard)
+                .HasMaxLength(15)
+                .IsUnicode(false);
+            entity.Property(e => e.SchemeName)
+                .HasMaxLength(50)
+                .IsUnicode(false);
+            entity.Property(e => e.SubsidyAmountToFarmer).HasColumnType("numeric(18, 4)");
+            entity.Property(e => e.TransactionType)
+                .HasMaxLength(20)
+                .IsUnicode(false);
+            entity.Property(e => e.UpdatedBy)
+                .HasMaxLength(50)
+                .IsUnicode(false);
+            entity.Property(e => e.VillageName)
+                .HasMaxLength(50)
+                .IsUnicode(false);
+        });
+
         modelBuilder.Entity<UserLogin>(entity =>
         {
             entity.HasKey(e => e.UserID).HasName("PK__UserLogi__1788CCACF6B85195");

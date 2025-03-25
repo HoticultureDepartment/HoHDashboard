@@ -17,5 +17,12 @@ namespace HoHDashboard.server.Controllers
             var data = _common.GetUserList();
             return Ok(data);
         }
+
+        [HttpGet("beneficiaries")]
+        public IActionResult Beneficiaries()
+        {
+            var data = _common.GetBeneficiaryList();
+            return Ok(data);
+        }
     }
 }

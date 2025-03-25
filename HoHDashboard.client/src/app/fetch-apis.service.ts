@@ -13,4 +13,9 @@ export class FetchAPIsService {
     let url = this.baseUrl + 'CommonType/users';
     return this.http.get(url);
   }
+
+  Beneficiaries() {
+    let url = this.baseUrl + 'CommonType/beneficiaries';
+    return this.http.get(url);
+  }
 }

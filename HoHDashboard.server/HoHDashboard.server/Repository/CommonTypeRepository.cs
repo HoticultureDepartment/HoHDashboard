@@ -12,5 +12,10 @@ namespace HoHDashboard.server.Repository
             var list = _context.UserLogins.ToList();
             return list;
         }
+        public IEnumerable<BeneficiaryMaster> GetBeneficiaryList()
+        {
+            var list = _context.BeneficiaryMasters.OrderBy(x => x.BeneficiaryName).Where(x => x.IsDeleted == false).ToList();
+            return list;
+        }
     }
 }
