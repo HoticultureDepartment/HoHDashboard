@@ -21,10 +21,8 @@ export class DashboardComponent implements AfterViewInit {
   usersList: any = [];
   beneficiaryList: any = [];
   Highcharts: typeof Highcharts = Highcharts;
-  chartOptions: Highcharts.Options;
-
-
-
+  chartOptions!: Highcharts.Options;
+  fyExpenditure: any;
 
   displayedColumns: string[] = ['uidByDepartment', 'fyYear', 'schemeName', 'componantName', 'beneficiaryName', 'fatherName', 'villageName', 'blockName', 'districtName', 'mobileNo', 'familyID', 'claimID', 'category', 'gender', 'areaNosPerUnit', 'subsidyAmountToFarmer', 'cropName', 'transactionType'];
   dataSource = new MatTableDataSource<any>(this.beneficiaryList);
@@ -41,38 +39,111 @@ export class DashboardComponent implements AfterViewInit {
     return ['actions', ...this.displayedColumns];
   }
 
+  GetTotalFYExpenditure() {
+    this.fetchApi.FyYearSubsidyAmount().subscribe((res: any) => {
+      this.fyExpenditure = res;
+      if (this.fyExpenditure != null && this.fyExpenditure != undefined) {
+        const processedData = this.processChartData(res);
+        this.updateChart(processedData, 'line');
+      }
+    }, (err: any) => {
+      console.error("Error fetching data:", err);
+    });
+  }
+
+
   constructor(private fetchApi: FetchAPIsService, private router: Router) {
 
+    // this.chartOptions = {
+    //   title: {
+    //     text: 'Total FY Expenditure'
+    //   },
+    //   // subtitle: {
+    //   //   text: 'Source: WorldClimate.com'
+    //   // },
+    //   credits: {
+    //     enabled: false
+    //   },
+    //   xAxis: {
+    //     title: {
+    //       text: 'FY Year'
+    //     },
+    //     categories: []
+    //   },
+    //   yAxis: {
+    //     title: {
+    //       text: 'Total Expenditure'
+    //     }
+    //   },
+    //   series: []
+    // };
+  }
+
+  private processChartData(apiData: any[]): {
+    categories: string[],
+    series: Highcharts.SeriesOptionsType[]
+  } {
+    const categories = new Set<string>();
+    const seriesMap: { [key: string]: { [year: string]: number } } = {};
+
+    // Extract categories (years) & organize data
+    apiData.forEach(item => {
+      categories.add(item.fyYear);
+
+      if (!seriesMap[item.scheme]) {
+        seriesMap[item.scheme] = {};
+      }
+      seriesMap[item.scheme][item.fyYear] = Number(item.totalSubsidyAmount) || 0;
+    });
+
+    const sortedCategories = Array.from(categories).sort();
+
+    // Convert to Highcharts series format
+    const seriesData: Highcharts.SeriesLineOptions[] = Object.keys(seriesMap).map(scheme => {
+      return {
+        name: scheme,
+        type: 'line',
+        data: sortedCategories.map(year => seriesMap[scheme][year] || 0) // Fill missing years with 0
+      };
+    });
+
+    return {
+      categories: sortedCategories,
+      series: seriesData
+    };
+  }
+
+  private updateChart(processData: {
+    categories: string[],
+    series: Highcharts.SeriesOptionsType[]
+  }, chartType: string = 'line') {
+
     this.chartOptions = {
-      title: {
-        text: 'Monthly Average Temperature'
-      },
-      subtitle: {
-        text: 'Source: WorldClimate.com'
-      },
-      credits: {
-        enabled: false
-      },
+      title: { text: 'Total Financial Year Expenditure' },
+      credits: { enabled: false },
       xAxis: {
-        categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+        type: 'category',
+        categories: processData.categories,
+        title: { text: 'Financial Year' }
       },
       yAxis: {
-        title: {
-          text: 'Temperature (°C)'
+        title: { text: 'Total Expenditure (₹)' },
+        labels: {
+          formatter: function () {
+            return `₹${this.value.toLocaleString('en-IN')}`;
+          }
         }
       },
-      series: [{
-        name: 'Tokyo',
-        type: 'line',
-        data: [7.0, 6.9, 9.5, 14.5, 18.2, 21.5, 25.2, 26.5, 23.3, 18.3, 13.9, 9.6]
-      }, {
-        name: 'London',
-        type: 'line',
-        data: [3.9, 4.2, 5.7, 8.5, 11.9, 15.2, 17.0, 16.6, 14.2, 10.3, 6.6, 4.8]
-      }]
+      tooltip: {
+        pointFormat: '{series.name}: <b>₹{point.y:,.0f}</b>'
+      },
+      series: processData.series.map(seriesItem => ({
+        ...seriesItem,
+        type: chartType as any
+      }))
     };
-
   }
+
   onButtonClick(element: any) {
     console.table(element);
   }
@@ -101,10 +172,10 @@ export class DashboardComponent implements AfterViewInit {
     }
   }
 
-
   ngOnInit() {
     // this.UserList();
     this.Beneficiaries();
+    this.GetTotalFYExpenditure();
   }
 }
 

@@ -18,4 +18,9 @@ export class FetchAPIsService {
     let url = this.baseUrl + 'CommonType/beneficiaries';
     return this.http.get(url);
   }
+
+  FyYearSubsidyAmount() {
+    let url = this.baseUrl + 'CommonType/fySubsidyAmount';
+    return this.http.get(url);
+  }
 }
