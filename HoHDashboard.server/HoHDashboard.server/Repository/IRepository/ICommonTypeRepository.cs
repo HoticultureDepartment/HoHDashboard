@@ -9,5 +9,8 @@ namespace HoHDashboard.server.Repository.IRepository
         IEnumerable<UserLogin> GetUserList();
         IEnumerable<BeneficiaryMaster> GetBeneficiaryList();
         IEnumerable<FyYearSubsidyAmountViewModel> GetFyYearSubsidyAmount();
+
+        string AddComponent(ComponentViewModel vmodel);
+        IEnumerable<ComponentMaster> ComponentList();
     }
 }

@@ -15,15 +15,17 @@ public partial class ApplicationDbContext : DbContext
 
     public virtual DbSet<BeneficiaryMaster> BeneficiaryMasters { get; set; }
 
+    public virtual DbSet<ComponentMaster> ComponentMasters { get; set; }
+
     public virtual DbSet<UserLogin> UserLogins { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<BeneficiaryMaster>(entity =>
         {
-            entity
-                .HasNoKey()
-                .ToTable("BeneficiaryMaster");
+            entity.HasKey(e => e.CompId).HasName("PK__Benefici__AD362A1680A12292");
+
+            entity.ToTable("BeneficiaryMaster");
 
             entity.Property(e => e.AccountNumber)
                 .HasMaxLength(50)
@@ -83,6 +85,28 @@ public partial class ApplicationDbContext : DbContext
                 .HasMaxLength(50)
                 .IsUnicode(false);
             entity.Property(e => e.VillageName)
+                .HasMaxLength(50)
+                .IsUnicode(false);
+        });
+
+        modelBuilder.Entity<ComponentMaster>(entity =>
+        {
+            entity.HasKey(e => e.ID).HasName("PK__Componen__3214EC27681766DF");
+
+            entity.ToTable("ComponentMaster");
+
+            entity.Property(e => e.ComponentCode)
+                .IsRequired()
+                .HasMaxLength(10)
+                .IsUnicode(false);
+            entity.Property(e => e.ComponentName)
+                .IsRequired()
+                .HasMaxLength(255)
+                .IsUnicode(false);
+            entity.Property(e => e.CreatedBy)
+                .HasMaxLength(50)
+                .IsUnicode(false);
+            entity.Property(e => e.UpdatedBy)
                 .HasMaxLength(50)
                 .IsUnicode(false);
         });

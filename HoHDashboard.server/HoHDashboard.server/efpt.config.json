@@ -19,6 +19,10 @@
          "ObjectType": 0
       },
       {
+         "Name": "[dbo].[ComponentMaster]",
+         "ObjectType": 0
+      },
+      {
          "Name": "[dbo].[UserLogin]",
          "ObjectType": 0
       }

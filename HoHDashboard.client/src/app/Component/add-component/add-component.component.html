@@ -1,0 +1,53 @@
+<main class="container py-3">
+    <form class="row g-4 align-items-center" [formGroup]="componentForm" (ngSubmit)="AddComponent()">
+        <div class="col-md-5">
+            <div class="form-floating mb-3">
+                <input type="text" class="form-control form-control-sm" id="compName" placeholder="Component Name"
+                    formControlName="ComponentName">
+                <label for="compName">Component Name</label>
+                <div *ngIf="componentForm.get('ComponentName')?.invalid && (componentForm.get('ComponentName')?.dirty || componentForm.get('ComponentName')?.touched)"
+                    class="text-danger">
+                    <small *ngIf="componentForm.get('ComponentName')?.error?.['required']">
+                        Component name is required.
+                    </small>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="form-floating mb-3">
+                <input type="text" class="form-control form-control-sm" id="compCode" placeholder="Component Code"
+                    formControlName="ComponentCode">
+                <label for="compCode">Component Code</label>
+                <div *ngIf="componentForm.get('ComponentCode')?.invalid && (componentForm.get('ComponentCode')?.dirty || componentForm.get('ComponentCode')?.touched)"
+                    class="text-danger">
+                    <small *ngIf="componentForm.get('ComponentCode')?.error?.['required']">
+                        Component code is required.
+                    </small>
+                </div>
+            </div>
+        </div>
+        <div class="col-4">
+            <button class="btn btn-primary" type="submit" [disabled]="componentForm.invalid">Add </button>
+        </div>
+    </form>
+    <div class="my-3">
+        <div class="table-responsive">
+            <table class="table table-bordered table-sm table-striped table-hover w-auto table-primary">
+                <thead>
+                    <tr>
+                        <th scope="col">Sr. No.</th>
+                        <th scope="col">Component Name</th>
+                        <th scope="col">Component Code</th>
+                    </tr>
+                </thead>
+                <tbody class="table-group-divider">
+                    <tr *ngFor="let component of componentList;let i = index">
+                        <th scope="row">{{i + 1}}.</th>
+                        <td>{{component.componentName}}</td>
+                        <td>{{component.componentCode}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</main>

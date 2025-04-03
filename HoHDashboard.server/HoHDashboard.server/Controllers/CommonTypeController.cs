@@ -1,4 +1,5 @@
 ﻿using HoHDashboard.server.Repository.IRepository;
+using HoHDashboard.server.ViewModels;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using static Azure.Core.HttpHeader;
@@ -29,6 +30,18 @@ namespace HoHDashboard.server.Controllers
         {
             var data = _common.GetFyYearSubsidyAmount();
             return Ok(data);
+        }
+        [HttpPost("addComponent")]
+        public IActionResult AddComponent([FromBody] ComponentViewModel vmodel)
+        {
+            string res = _common.AddComponent(vmodel);
+            return Ok(new { success = true, message = res });
+        }
+        [HttpGet("components")]
+        public IActionResult Components()
+        {
+            var res = _common.ComponentList();
+            return Ok(res);
         }
     }
 }

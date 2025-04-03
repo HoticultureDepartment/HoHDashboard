@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { retry } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -22,5 +23,13 @@ export class FetchAPIsService {
   FyYearSubsidyAmount() {
     let url = this.baseUrl + 'CommonType/fySubsidyAmount';
     return this.http.get(url);
+  }
+  Components() {
+    let url = this.baseUrl + 'CommonType/components';
+    return this.http.get(url);
+  }
+  AddComponent(data: any) {
+    let url = this.baseUrl + 'CommonType/addComponent';
+    return this.http.post(url, data);
   }
 }

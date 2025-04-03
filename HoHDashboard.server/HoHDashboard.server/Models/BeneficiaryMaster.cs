@@ -7,8 +7,6 @@ namespace HoHDashboard.server.Models;
 
 public partial class BeneficiaryMaster
 {
-    public int ID { get; set; }
-
     public string FyYear { get; set; }
 
     public string SchemeName { get; set; }
@@ -60,4 +58,6 @@ public partial class BeneficiaryMaster
     public DateTimeOffset? UpdatedDateTime { get; set; }
 
     public bool? IsDeleted { get; set; }
+
+    public int CompId { get; set; }
 }
